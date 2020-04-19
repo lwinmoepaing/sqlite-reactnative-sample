@@ -9,7 +9,6 @@ import {
 	Alert,
 } from 'react-native'
 import { useDispatch } from 'react-redux'
-import * as Permissions from 'expo-permissions'
 
 // Theme
 import Color from '../constants/Color'
@@ -26,6 +25,7 @@ const NewPlaceScreen = ({ navigation }) => {
 
 	// States
 	const [title, setTitle] = useState('')
+	const [selectedImage, setSelectedImage] = useState(null)
 
 	// Set Navigation Options
 	React.useLayoutEffect(() => {
@@ -39,8 +39,12 @@ const NewPlaceScreen = ({ navigation }) => {
 	}
 
 	const submitHandler = () => {
-		dispatch(placeActions.addPlace(title))
+		dispatch(placeActions.addPlace(title, selectedImage))
 		navigation.goBack()
+	}
+
+	const imageTakenHandler = (imagePath) => {
+		setSelectedImage(imagePath)
 	}
 
 	return (
@@ -52,7 +56,7 @@ const NewPlaceScreen = ({ navigation }) => {
 					value={title}
 					onChangeText={textChangeHandler}
 				/>
-				<ImgPicker />
+				<ImgPicker onImageTaken={imageTakenHandler} />
 				<Button
 					title="Add New Place"
 					onPress={submitHandler}
