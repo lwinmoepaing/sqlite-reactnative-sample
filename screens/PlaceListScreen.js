@@ -1,14 +1,25 @@
-import React, { useCallback } from 'react'
-import { View, Text, StyleSheet, Platform, FlatList } from 'react-native'
+import React, { useCallback, useEffect } from 'react'
+import { View, StyleSheet, Platform, FlatList } from 'react-native'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 
 import CustomHeaderButton from '../components/UI/HeaderButton'
 import PlaceItem from '../components/Place/PlaceItem'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+
+// Actions
+import * as placeActions from '../store/action/place'
 
 const PlaceListScreen = ({ navigation }) => {
+	// Dispatch
+	const dispatch = useDispatch()
+
 	// State
 	const places = useSelector((state) => state.places.places)
+
+	// Initial Loaded Data
+	useEffect(() => {
+		dispatch(placeActions.loadedData())
+	}, [])
 
 	// Set Navigation Options
 	React.useLayoutEffect(() => {

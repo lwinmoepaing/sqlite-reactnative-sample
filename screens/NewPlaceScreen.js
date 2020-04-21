@@ -6,7 +6,6 @@ import {
 	StyleSheet,
 	ScrollView,
 	Button,
-	Alert,
 } from 'react-native'
 import { useDispatch } from 'react-redux'
 

@@ -28,13 +28,16 @@ const ImgPicker = (props) => {
 		// Handle Validator
 		const hasPermission = await verifyPermissions()
 		if (!hasPermission) return
+
+		// If has Permission
 		const image = await ImagePicker.launchCameraAsync({
 			allowsEditing: true,
 			aspect: [16, 9],
 			quality: 0.5,
 		})
 		setPickedImage(image.uri)
-		// to do parent function
+
+		// To do parent function
 		props.onImageTaken(image.uri)
 	}
 
