@@ -17,6 +17,7 @@ import * as placeActions from '../store/action/place'
 
 // Components
 import ImgPicker from '../components/Common/ImagePicker'
+import LocationPicker from '../components/Common/LocationPicker'
 
 const NewPlaceScreen = ({ navigation }) => {
 	// Dispatch
@@ -56,6 +57,7 @@ const NewPlaceScreen = ({ navigation }) => {
 					onChangeText={textChangeHandler}
 				/>
 				<ImgPicker onImageTaken={imageTakenHandler} />
+				<LocationPicker />
 				<Button
 					title="Add New Place"
 					onPress={submitHandler}
